@@ -77,6 +77,23 @@ app.get('/features' , (req,res) => {
 })
 
 // Post routes
+app.post('/submitorder' , (req,res) => {
+    const data = req.body;
+    console.log(data);
+    client = new MongoClient(uri , {useNewUrlParser:true , useUnifiedTopology: true});
+    client.connect(err => {
+        const collection = client.db('redOnionRestaura').collection('orders');
+        collection.insert(data , (rej, result) =>  {
+            if(rej){
+                res.status(500).send("Filed to inset")
+            }else{
+                res.send(result.ops)
+            }
+        })
+    })
+})
+
+// Bellows are dummy post method used just one time
 app.post('/addfood' , (req,res) => {
     const data = req.body;
     console.log(data);
