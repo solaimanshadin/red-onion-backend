@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-const port = 3200;
+const port = process.env.PORT || 3200;
 
 const uri = process.env.DB_PATH;
 let client = new MongoClient(uri , {useNewUrlParser:true});
