@@ -87,7 +87,7 @@ app.post('/submitorder' , (req,res) => {
             if(rej){
                 res.status(500).send("Filed to inset")
             }else{
-                res.send(result.ops)
+                res.send(result.ops[0])
             }
         })
     })
